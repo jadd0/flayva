@@ -1,9 +1,23 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b6100fd (Added HomePage and a Sidebar removed Test.tsx from main route)
+import { QueryClientProvider } from "@tanstack/react-query";
+import { Routes, Route } from "react-router-dom";
+import { queryClient } from "@lib/query";
+import { Toaster } from "@components/ui/sonner";
+import { Login } from "./pages/Login";
+=======
+>>>>>>> 8f2fef4 (Added HomePage and a Sidebar removed Test.tsx from main route)
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Outlet, Navigate } from "react-router-dom";
 import { useMemo } from "react";
 import { useMe } from "./hooks/auth.hooks";
 
 /* Pages */
+<<<<<<< HEAD
 import HomePage from "@/pages/Home.page";
 import AppSidebar from "@/components/layout/Sidebar";
 import FeedPage from "./pages/Feed.page";
@@ -47,6 +61,13 @@ function UnauthenticatedRouter() {
 /**
  * The main application component.
  */
+=======
+import { Test } from "@/components/Test";
+import { AuthTest } from "@pages/AuthTest";
+import  HomePage  from "@pages/HomePage";
+
+
+>>>>>>> b6100fd (Added HomePage and a Sidebar removed Test.tsx from main route)
 function App() {
   const { pathname } = useLocation();
 
