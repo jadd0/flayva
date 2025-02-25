@@ -23,6 +23,7 @@ import { useMe } from "./hooks/auth.hooks";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Outlet, Navigate } from "react-router-dom";
 import { useMemo } from "react";
+import { useMe } from "./hooks/auth.hooks";
 
 /* Pages */
 >>>>>>> 4407f90 (improved client side routing)
@@ -149,7 +150,15 @@ function App() {
     <div className="w-screen h-screen flex flex-row flex-nowrap justify-center">
 >>>>>>> 6df387d (improved client side routing)
       {shouldShowSidebar && <AppSidebar />}
+<<<<<<< HEAD
       <main className="grow bg-amber-200 h-screen flex flex-col flex-nowrap overflow-x-hidden overflow-y-auto">
+=======
+<<<<<<< HEAD
+      <main className="max-w-7xl border-x-2 border-red-800 border h-screen flex flex-col flex-nowrap overflow-auto">
+=======
+      <main className="grow bg-amber-200 h-screen flex flex-col flex-nowrap overflow-x-hidden overflow-y-auto">
+>>>>>>> a4635a5 (uncomment out routing)
+>>>>>>> 96bd7cf (uncomment out routing)
         <Routes>
           <Route index element={<HomePage />} />
           <Route element={<AuthenticatedRouter />}>
