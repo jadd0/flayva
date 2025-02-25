@@ -26,10 +26,14 @@ import {
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
 <<<<<<< HEAD
+<<<<<<< HEAD
 const SIDEBAR_WIDTH = "20%"
 =======
 const SIDEBAR_WIDTH = "25%"
 >>>>>>> b6100fd (Added HomePage and a Sidebar removed Test.tsx from main route)
+=======
+const SIDEBAR_WIDTH = "20%"
+>>>>>>> 0636d7e (Fixed sidebar)
 const SIDEBAR_WIDTH_MOBILE = "18rem"
 const SIDEBAR_WIDTH_ICON = "3rem"
 const SIDEBAR_KEYBOARD_SHORTCUT = "b"
