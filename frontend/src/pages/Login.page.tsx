@@ -36,8 +36,21 @@ const SLIDESHOW_ITEMS = [
   },
 ];
 
+<<<<<<< HEAD
 function LoginImageSlideShow({ className }: { className: ClassNameValue }) {
   return <Slideshow items={SLIDESHOW_ITEMS} header="FLAYVA" className={className} />;
+=======
+function TestUnauthenticated() {
+
+
+  return (
+    <>
+    <div className="w-screen h-screen flex items-center justify-center">
+      <LoginForm/>
+    </div>
+    </>
+  );
+>>>>>>> 0562c4a (Fixed Login page)
 }
 
 export default function LoginPage() {
