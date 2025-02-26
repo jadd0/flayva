@@ -19,6 +19,9 @@ const OauthProviderButton = ({
 }) => {
   return (
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2741174 (re-style login form)
     <Button
       type="button"
       variant="outline"
@@ -29,6 +32,7 @@ const OauthProviderButton = ({
       <span className="flex text-base">
         Login with&nbsp;
         <p className="font-bold">{provider.charAt(0).toUpperCase() + provider.slice(1)}</p>
+<<<<<<< HEAD
       </span>
 =======
     <Button type="button" variant="outline" className="w-full h-16 hover:bg-gray-100" onClick={handleClick}>
@@ -37,6 +41,9 @@ const OauthProviderButton = ({
       </span>
       <span className="md:flex hidden">Login with&nbsp;<p className="font-bold">{provider.charAt(0).toUpperCase() + provider.slice(1)}</p></span>
 >>>>>>> 0562c4a (Fixed Login page)
+=======
+      </span>
+>>>>>>> 2741174 (re-style login form)
     </Button>
   );
 };
@@ -101,6 +108,9 @@ const MetaButton = () => {
       icon={
         <svg xmlns="http://www.w3.org/2000/svg" width="45" height="29.813" viewBox="0 0 45 29.813">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2741174 (re-style login form)
           <path
             id="Icon_fa-brands-meta"
             data-name="Icon fa-brands-meta"
@@ -108,9 +118,12 @@ const MetaButton = () => {
             transform="translate(0 -2.981)"
             fill="#1d1d1d"
           />
+<<<<<<< HEAD
 =======
           <path id="Icon_fa-brands-meta" data-name="Icon fa-brands-meta" d="M45,22.352c0,6.42-2.77,10.441-7.755,10.441-4.4,0-6.736-2.433-11.032-9.6,0,0-3.227-5.4-3.7-6.159-1.413,2.377-3.6,6.159-3.6,6.159-4.711,8.2-7.07,9.6-10.748,9.6C3.053,32.794,0,28.765,0,22.535,0,12.48,5.61,2.981,12.93,2.981c3.53,0,6,1.663,9.584,6.221,3.129-4.422,6.089-6.221,9.78-6.221C39.262,2.981,45,11.82,45,22.352ZM20.2,12.312c-3.016-4.366-4.976-4.458-7.332-4.458-4.352,0-8,7.46-8,14.766,0,3.41,1.3,5.323,3.486,5.323,2.123,0,3.445-1.336,7.256-7.3a87.555,87.555,0,0,0,4.59-8.332ZM37.35,27.942c2.264,0,3.3-1.934,3.3-5.266,0-8.733-3.8-14.822-8.64-14.822-2.334,0-4.319.795-6.7,4.458.661.97,1.343,2.039,4.7,7.58,4.127,6.616,5.168,8.051,7.341,8.051Z" transform="translate(0 -2.981)" fill="#1d1d1d"/>
 >>>>>>> 0562c4a (Fixed Login page)
+=======
+>>>>>>> 2741174 (re-style login form)
         </svg>
       }
     />
@@ -119,6 +132,7 @@ const MetaButton = () => {
 
 export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
   return (
+<<<<<<< HEAD
 <<<<<<< HEAD
     <div className={cn("w-96 inline-block overflow-hidden", className)} {...props}>
       <div className="flex flex-col w-full h-fit bg-accent pb-3 rounded-xl border-1 border-accent">
@@ -163,6 +177,39 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
           By clicking continue, you agree to our <a href="#">Terms of Service</a> and{" "}
           <a href="#">Privacy Policy</a>.
         </div>
+=======
+    <div
+      className={cn(
+        "flex flex-col w-96 h-fit bg-accent pb-3 rounded-xl border-1 border-accent",
+        className
+      )}
+      {...props}
+    >
+      <Card className="w-full h-full pt-12 justify-between border-1 border-accent rounded-xl">
+        <CardHeader className="text-center">
+          <CardTitle className="text-3xl text-center flex flex-col space-y-10">
+            <img src={Logo} alt="Flayva Logo" className="h-20 w-auto" />
+            <span className="flex items-center justify-center text-nowrap">
+              Sign in to&nbsp;<p className="font-black font-stretch-ultra-condensed">FLAYVA</p>
+            </span>
+          </CardTitle>
+          <CardDescription className="text-muted-foreground text-base">
+            Welcome back! Please sign in to continue
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-col gap-4">
+            <GoogleButton />
+            <AppleButton />
+            <MetaButton />
+          </div>
+        </CardContent>
+      </Card>
+      <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary  mt-4">
+        By clicking continue, you agree to our <a href="#">Terms of Service</a> and{" "}
+        <a href="#">Privacy Policy</a>.
+>>>>>>> 2741174 (re-style login form)
       </div>
+    </div>
   );
 }
