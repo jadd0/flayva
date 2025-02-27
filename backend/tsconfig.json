@@ -149,6 +149,7 @@
 <<<<<<< HEAD
       "@constants/*": ["src/constants/*"],
       "@flayva-monorepo/shared/*": ["../shared/src/*"]
+<<<<<<< HEAD
 >>>>>>> dd163c9 (restructure shared folder)
 <<<<<<< HEAD
 >>>>>>> 6ce5e12 (restructure shared folder)
@@ -214,7 +215,19 @@
 =======
       "@flayva-monorepo/shared/*": ["../shared/src/*"]
 >>>>>>> d93e747 (fix shared import for backend)
+<<<<<<< HEAD
 >>>>>>> 0000c77 (fix shared import for backend)
+=======
+=======
+=======
+<<<<<<< HEAD
+      "@constants/*": ["src/constants/*"]
+=======
+      "@flayva-monorepo/shared": ["../shared/src"]
+>>>>>>> 00faa13 (fix shared import for backend)
+>>>>>>> b56575e (fix shared import for backend)
+>>>>>>> cbbda81 (restructure shared folder)
+>>>>>>> d14426b (restructure shared folder)
       // "@config/*": ["./src/constants/config/*"]
     },
     "composite": true,
@@ -326,11 +339,14 @@
 >>>>>>> 8404e46 (fix shared import for backend)
 =======
   "include": ["src/**/*"],
+<<<<<<< HEAD
   "exclude": [
     "../shared/dist", // Exclude the built output of the shared package
     "../shared/src", // Exclude the source files of the shared package
     "../shared/node_modules"
   ],
+=======
+>>>>>>> b56575e (fix shared import for backend)
   "references": [{ "path": "../shared" }]
 <<<<<<< HEAD
 >>>>>>> dd163c9 (restructure shared folder)
