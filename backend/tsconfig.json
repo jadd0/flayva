@@ -21,6 +21,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       "@auth/*": ["src/auth/*"],
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -61,6 +62,8 @@
 >>>>>>> 00dc53b (fix shared import for backend)
 =======
 >>>>>>> 596ba85 (restructure shared folder)
+=======
+>>>>>>> 38b762a (fix shared import for backend)
       "@auth/*": ["src/auth/*"],
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -133,7 +136,13 @@
       "@constants/*": ["src/constants/*"]
 >>>>>>> 78abf1a (fix shared import for backend)
 >>>>>>> dc03a0c (fix shared import for backend)
+<<<<<<< HEAD
 >>>>>>> ba12360 (fix shared import for backend)
+=======
+=======
+      "@auth/*": ["src/auth/*"]
+>>>>>>> 2a34c42 (fix shared import for backend)
+>>>>>>> 38b762a (fix shared import for backend)
       // "@config/*": ["./src/constants/config/*"]
     },
     "composite": true,
@@ -142,6 +151,7 @@
     "sourceMap": true
   },
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -187,6 +197,8 @@
 >>>>>>> 596ba85 (restructure shared folder)
 =======
 >>>>>>> ba12360 (fix shared import for backend)
+=======
+>>>>>>> 38b762a (fix shared import for backend)
   "include": ["src/**/*"],
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -238,5 +250,12 @@
   // "references": [{ "path": "../shared" }]
 >>>>>>> 78abf1a (fix shared import for backend)
 >>>>>>> dc03a0c (fix shared import for backend)
+<<<<<<< HEAD
 >>>>>>> ba12360 (fix shared import for backend)
+=======
+=======
+  "include": ["src/**/*"]
+  // "references": [{ "path": "../shared" }]
+>>>>>>> 2a34c42 (fix shared import for backend)
+>>>>>>> 38b762a (fix shared import for backend)
 }
