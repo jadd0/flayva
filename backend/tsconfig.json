@@ -16,6 +16,7 @@
       "@routes/*": ["src/server/routes/*"],
       "@middleware/*": ["src/server/middleware/*"],
 <<<<<<< HEAD
+<<<<<<< HEAD
       "@auth/*": ["src/auth/*"],
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -45,6 +46,9 @@
       "@flayva-monorepo/shared/*": ["../shared/src/*"]
 >>>>>>> dd163c9 (restructure shared folder)
 >>>>>>> e8a55ca (fix shared import for backend)
+=======
+      "@auth/*": ["src/auth/*"]
+>>>>>>> ce1894e (restructure shared folder)
       // "@config/*": ["./src/constants/config/*"]
     },
     "composite": true,
@@ -53,6 +57,7 @@
     "sourceMap": true
   },
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   "include": ["src/**/*"],
 <<<<<<< HEAD
@@ -82,4 +87,8 @@
   "references": [{ "path": "../shared" }]
 >>>>>>> dd163c9 (restructure shared folder)
 >>>>>>> e8a55ca (fix shared import for backend)
+=======
+  "include": ["src/**/*"]
+  // "references": [{ "path": "../shared" }]
+>>>>>>> ce1894e (restructure shared folder)
 }
