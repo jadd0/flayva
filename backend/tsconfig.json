@@ -25,10 +25,13 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 993362b (fix shared import for backend)
 =======
 >>>>>>> 5485e07 (fix shared import for backend)
+=======
+>>>>>>> 653fc3c (fix shared import for backend)
       "@auth/*": ["src/auth/*"],
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -145,6 +148,8 @@
 =======
       "@auth/*": ["src/auth/*"]
 =======
+=======
+>>>>>>> c667b03 (fix shared import for backend)
       "@auth/*": ["src/auth/*"],
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -242,8 +247,22 @@
       "@flayva-monorepo/shared/*": ["../shared/src/*"]
 >>>>>>> dd163c9 (restructure shared folder)
 >>>>>>> 4b5fc47 (fix shared import for backend)
+<<<<<<< HEAD
 >>>>>>> 9b3cfa0 (fix shared import for backend)
+<<<<<<< HEAD
 >>>>>>> b34338d (fix shared import for backend)
+=======
+=======
+=======
+      "@auth/*": ["src/auth/*"]
+=======
+      "@auth/*": ["src/auth/*"],
+      "@constants/*": ["src/constants/*"],
+      "@flayva-monorepo/shared/*": ["../shared/src/*"]
+>>>>>>> dd163c9 (restructure shared folder)
+>>>>>>> e8a55ca (fix shared import for backend)
+>>>>>>> c667b03 (fix shared import for backend)
+>>>>>>> 653fc3c (fix shared import for backend)
       // "@config/*": ["./src/constants/config/*"]
     },
     "composite": true,
@@ -252,6 +271,7 @@
     "sourceMap": true
   },
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -315,6 +335,8 @@
 >>>>>>> 5485e07 (fix shared import for backend)
 =======
 >>>>>>> 95a0099 (restructure shared folder)
+=======
+>>>>>>> 653fc3c (fix shared import for backend)
   "include": ["src/**/*"],
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -354,22 +376,33 @@
   // "references": [{ "path": "../shared" }]
 >>>>>>> 8404e46 (fix shared import for backend)
 =======
+=======
+>>>>>>> c667b03 (fix shared import for backend)
   "include": ["src/**/*"],
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
 >>>>>>> 4b5fc47 (fix shared import for backend)
+=======
+<<<<<<< HEAD
+  "include": ["src/**/*"]
+  // "references": [{ "path": "../shared" }]
+=======
+  "include": ["src/**/*"],
+>>>>>>> e8a55ca (fix shared import for backend)
   "exclude": [
     "../shared/dist", // Exclude the built output of the shared package
     "../shared/src", // Exclude the source files of the shared package
     "../shared/node_modules"
   ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> b56575e (fix shared import for backend)
 =======
 >>>>>>> 4b5fc47 (fix shared import for backend)
   "references": [{ "path": "../shared" }]
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> dd163c9 (restructure shared folder)
 <<<<<<< HEAD
@@ -432,5 +465,14 @@
   ],
   "references": [{ "path": "../shared" }]
 >>>>>>> 60a6262 (restructure shared folder)
+<<<<<<< HEAD
 >>>>>>> 95a0099 (restructure shared folder)
+=======
+=======
+=======
+  "references": [{ "path": "../shared" }]
+>>>>>>> dd163c9 (restructure shared folder)
+>>>>>>> e8a55ca (fix shared import for backend)
+>>>>>>> c667b03 (fix shared import for backend)
+>>>>>>> 653fc3c (fix shared import for backend)
 }
