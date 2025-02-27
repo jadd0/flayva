@@ -17,6 +17,7 @@
       "@middleware/*": ["src/server/middleware/*"],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       "@auth/*": ["src/auth/*"],
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -64,6 +65,10 @@
 =======
 >>>>>>> 9b15fba (restructure shared folder)
 >>>>>>> 57e6821 (fix shared import for backend)
+=======
+      "@auth/*": ["src/auth/*"],
+      "@constants/*": ["src/constants/*"]
+>>>>>>> 76cb6eb (added posts & recipe db schema;)
       // "@config/*": ["./src/constants/config/*"]
     },
     "composite": true,

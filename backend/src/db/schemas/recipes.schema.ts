@@ -1,4 +1,14 @@
+<<<<<<< HEAD
 import { RECIPES } from "@flayva-monorepo/shared/constants";
+=======
+import {
+  INGREDIENT_GROUPS,
+  INGREDIENT_SUBGROUPS,
+  INGREDIENT_UNIT,
+  TAG_CATEGORIES,
+  TAG_GROUPS,
+} from "@/constants/recipes.constants";
+>>>>>>> 76cb6eb (added posts & recipe db schema;)
 import { users } from "@/db/schema";
 import { posts } from "@/db/schemas/posts.schema";
 import { integer, pgEnum, pgTable, primaryKey, timestamp, varchar } from "drizzle-orm/pg-core";
@@ -6,6 +16,7 @@ import { relations } from "drizzle-orm";
 
 // ## ENUMS ##
 
+<<<<<<< HEAD
 export const tagCategoryEnum = pgEnum("category", RECIPES.TAG_CATEGORIES);
 
 export const tagGroupEnum = pgEnum("group", RECIPES.TAG_GROUPS);
@@ -15,6 +26,17 @@ export const ingredientUnitEnum = pgEnum("unit", RECIPES.INGREDIENT_UNIT);
 export const ingredientGroupEnum = pgEnum("ingredient_group", RECIPES.INGREDIENT_GROUPS);
 
 export const ingredientSubgroupEnum = pgEnum("ingredient_subgroup", RECIPES.INGREDIENT_SUBGROUPS);
+=======
+export const tagCategoryEnum = pgEnum("category", TAG_CATEGORIES);
+
+export const tagGroupEnum = pgEnum("group", TAG_GROUPS);
+
+export const ingredientUnitEnum = pgEnum("unit", INGREDIENT_UNIT);
+
+export const ingredientGroupEnum = pgEnum("ingredient_group", INGREDIENT_GROUPS);
+
+export const ingredientSubgroupEnum = pgEnum("ingredient_subgroup", INGREDIENT_SUBGROUPS);
+>>>>>>> 76cb6eb (added posts & recipe db schema;)
 
 // ## TABLES ##
 
@@ -23,6 +45,7 @@ export const recipes = pgTable("recipes", {
   master_post_id: varchar("master_post_id").references(() => posts.id, { onDelete: "set null" }),
   title: varchar("title").notNull(),
   description: varchar("description").notNull(),
+<<<<<<< HEAD
   created_at: timestamp("created_at", { mode: "string" }).defaultNow(),
 });
 
@@ -36,6 +59,12 @@ export const recipe_instruction_steps = pgTable(
   (table) => [primaryKey({ columns: [table.recipeId, table.stepNumber] })]
 );
 
+=======
+  instructions: varchar("instructions").notNull(),
+  created_at: timestamp("created_at", { mode: "string" }).defaultNow(),
+});
+
+>>>>>>> 76cb6eb (added posts & recipe db schema;)
 export const recipe_tags = pgTable(
   "recipe_tags",
   {
@@ -97,7 +126,10 @@ export const relations_recipes = relations(recipes, ({ one, many }) => ({
   ratings: many(recipe_ratings),
   ingredients: many(recipe_ingredients),
   tagLinks: many(recipe_tags),
+<<<<<<< HEAD
   instructions: many(recipe_instruction_steps),
+=======
+>>>>>>> 76cb6eb (added posts & recipe db schema;)
 }));
 
 // Define relations for the recipe_ratings table.
@@ -129,6 +161,7 @@ export const relations_tags = relations(tags, ({ many }) => ({
 export const relations_ingredient_items = relations(ingredient_items, ({ one, many }) => ({
   recipeIngredientLinks: many(recipe_ingredients),
 }));
+<<<<<<< HEAD
 
 // Define relations for the recipe_instruction_steps table.
 export const relations_recipe_instruction_steps = relations(
@@ -137,3 +170,5 @@ export const relations_recipe_instruction_steps = relations(
     recipe: one(recipes, { fields: [recipe_instruction_steps.recipeId], references: [recipes.id] }),
   })
 );
+=======
+>>>>>>> 76cb6eb (added posts & recipe db schema;)
