@@ -19,9 +19,13 @@
       "@auth/*": ["src/auth/*"]
 =======
       "@auth/*": ["src/auth/*"],
+<<<<<<< HEAD
       "@constants/*": ["src/constants/*"],
       "@flayva-monorepo/shared/*": ["../shared/src/*"]
 >>>>>>> dd163c9 (restructure shared folder)
+=======
+      "@constants/*": ["src/constants/*"]
+>>>>>>> 78abf1a (fix shared import for backend)
       // "@config/*": ["./src/constants/config/*"]
     },
     "composite": true,
@@ -30,6 +34,7 @@
     "sourceMap": true
   },
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   "include": ["src/**/*"]
   // "references": [{ "path": "../shared" }]
@@ -42,4 +47,8 @@
   ],
   "references": [{ "path": "../shared" }]
 >>>>>>> dd163c9 (restructure shared folder)
+=======
+  "include": ["src/**/*"]
+  // "references": [{ "path": "../shared" }]
+>>>>>>> 78abf1a (fix shared import for backend)
 }
