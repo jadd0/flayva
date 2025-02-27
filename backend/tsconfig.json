@@ -18,6 +18,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       "@auth/*": ["src/auth/*"],
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -69,6 +70,10 @@
       "@auth/*": ["src/auth/*"],
       "@constants/*": ["src/constants/*"]
 >>>>>>> 76cb6eb (added posts & recipe db schema;)
+=======
+      "@auth/*": ["src/auth/*"],
+      "@flayva-monorepo/shared": ["../shared/src"]
+>>>>>>> 00faa13 (fix shared import for backend)
       // "@config/*": ["./src/constants/config/*"]
     },
     "composite": true,
@@ -77,6 +82,7 @@
     "sourceMap": true
   },
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   "include": ["src/**/*"],
@@ -111,4 +117,8 @@
   "include": ["src/**/*"]
   // "references": [{ "path": "../shared" }]
 >>>>>>> ce1894e (restructure shared folder)
+=======
+  "include": ["src/**/*"],
+  "references": [{ "path": "../shared" }]
+>>>>>>> 00faa13 (fix shared import for backend)
 }
