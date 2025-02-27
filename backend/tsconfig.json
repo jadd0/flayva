@@ -19,6 +19,13 @@
 <<<<<<< HEAD
       "@constants/*": ["src/constants/*"],
       "@flayva-monorepo/shared/*": ["../shared/src/*"]
+=======
+<<<<<<< HEAD
+      "@constants/*": ["src/constants/*"]
+=======
+      "@flayva-monorepo/shared": ["../shared/src"]
+>>>>>>> 00faa13 (fix shared import for backend)
+>>>>>>> b56575e (fix shared import for backend)
       // "@config/*": ["./src/constants/config/*"]
     },
     "composite": true,
@@ -28,10 +35,13 @@
   },
 
   "include": ["src/**/*"],
+<<<<<<< HEAD
   "exclude": [
     "../shared/dist", // Exclude the built output of the shared package
     "../shared/src", // Exclude the source files of the shared package
     "../shared/node_modules"
   ],
+=======
+>>>>>>> b56575e (fix shared import for backend)
   "references": [{ "path": "../shared" }]
 }
