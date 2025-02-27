@@ -26,12 +26,15 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 993362b (fix shared import for backend)
 =======
 >>>>>>> 5485e07 (fix shared import for backend)
 =======
 >>>>>>> 653fc3c (fix shared import for backend)
+=======
+>>>>>>> 4b21821 (restructure shared folder)
       "@auth/*": ["src/auth/*"],
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -150,6 +153,8 @@
 =======
 =======
 >>>>>>> c667b03 (fix shared import for backend)
+=======
+>>>>>>> 28175fe (restructure shared folder)
       "@auth/*": ["src/auth/*"],
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -261,8 +266,17 @@
       "@flayva-monorepo/shared/*": ["../shared/src/*"]
 >>>>>>> dd163c9 (restructure shared folder)
 >>>>>>> e8a55ca (fix shared import for backend)
+<<<<<<< HEAD
 >>>>>>> c667b03 (fix shared import for backend)
+<<<<<<< HEAD
 >>>>>>> 653fc3c (fix shared import for backend)
+=======
+=======
+=======
+      "@auth/*": ["src/auth/*"]
+>>>>>>> ce1894e (restructure shared folder)
+>>>>>>> 28175fe (restructure shared folder)
+>>>>>>> 4b21821 (restructure shared folder)
       // "@config/*": ["./src/constants/config/*"]
     },
     "composite": true,
@@ -271,6 +285,7 @@
     "sourceMap": true
   },
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -337,6 +352,8 @@
 >>>>>>> 95a0099 (restructure shared folder)
 =======
 >>>>>>> 653fc3c (fix shared import for backend)
+=======
+>>>>>>> 4b21821 (restructure shared folder)
   "include": ["src/**/*"],
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -378,6 +395,8 @@
 =======
 =======
 >>>>>>> c667b03 (fix shared import for backend)
+=======
+>>>>>>> 28175fe (restructure shared folder)
   "include": ["src/**/*"],
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -473,6 +492,16 @@
   "references": [{ "path": "../shared" }]
 >>>>>>> dd163c9 (restructure shared folder)
 >>>>>>> e8a55ca (fix shared import for backend)
+<<<<<<< HEAD
 >>>>>>> c667b03 (fix shared import for backend)
+<<<<<<< HEAD
 >>>>>>> 653fc3c (fix shared import for backend)
+=======
+=======
+=======
+  "include": ["src/**/*"]
+  // "references": [{ "path": "../shared" }]
+>>>>>>> ce1894e (restructure shared folder)
+>>>>>>> 28175fe (restructure shared folder)
+>>>>>>> 4b21821 (restructure shared folder)
 }
