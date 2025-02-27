@@ -15,17 +15,7 @@
       "@controllers/*": ["src/server/controllers/*"],
       "@routes/*": ["src/server/routes/*"],
       "@middleware/*": ["src/server/middleware/*"],
-      "@auth/*": ["src/auth/*"],
-<<<<<<< HEAD
-<<<<<<< HEAD
-      "@constants/*": ["src/constants/*"]
-=======
-      "@flayva-monorepo/shared": ["../shared/src"]
->>>>>>> 00faa13 (fix shared import for backend)
-=======
-      "@constants/*": ["src/constants/*"],
-      "@flayva-monorepo/shared/*": ["../shared/src/*"]
->>>>>>> dd163c9 (restructure shared folder)
+      "@auth/*": ["src/auth/*"]
       // "@config/*": ["./src/constants/config/*"]
     },
     "composite": true,
@@ -34,11 +24,6 @@
     "sourceMap": true
   },
 
-  "include": ["src/**/*"],
-  "exclude": [
-    "../shared/dist", // Exclude the built output of the shared package
-    "../shared/src", // Exclude the source files of the shared package
-    "../shared/node_modules"
-  ],
-  "references": [{ "path": "../shared" }]
+  "include": ["src/**/*"]
+  // "references": [{ "path": "../shared" }]
 }
