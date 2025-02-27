@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { RECIPES } from "@flayva-monorepo/shared/constants";
 =======
 import {
@@ -13,6 +14,9 @@ import {
 =======
 import { RECIPES } from "@flayva-monorepo/shared/constants";
 >>>>>>> dd163c9 (restructure shared folder)
+=======
+import { RECIPES } from "@flayva-monorepo/shared/constants";
+>>>>>>> dd163c9 (restructure shared folder)
 import { users } from "@/db/schema";
 import { posts } from "@/db/schemas/posts.schema";
 import { integer, pgEnum, pgTable, primaryKey, timestamp, varchar } from "drizzle-orm/pg-core";
@@ -20,6 +24,7 @@ import { relations } from "drizzle-orm";
 
 // ## ENUMS ##
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 export const tagCategoryEnum = pgEnum("category", RECIPES.TAG_CATEGORIES);
@@ -36,6 +41,9 @@ export const tagCategoryEnum = pgEnum("category", TAG_CATEGORIES);
 =======
 export const tagCategoryEnum = pgEnum("category", RECIPES.TAG_CATEGORIES);
 >>>>>>> dd163c9 (restructure shared folder)
+=======
+export const tagCategoryEnum = pgEnum("category", RECIPES.TAG_CATEGORIES);
+>>>>>>> dd163c9 (restructure shared folder)
 
 export const tagGroupEnum = pgEnum("group", RECIPES.TAG_GROUPS);
 
@@ -44,8 +52,12 @@ export const ingredientUnitEnum = pgEnum("unit", RECIPES.INGREDIENT_UNIT);
 export const ingredientGroupEnum = pgEnum("ingredient_group", RECIPES.INGREDIENT_GROUPS);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 export const ingredientSubgroupEnum = pgEnum("ingredient_subgroup", INGREDIENT_SUBGROUPS);
 >>>>>>> 76cb6eb (added posts & recipe db schema;)
+=======
+export const ingredientSubgroupEnum = pgEnum("ingredient_subgroup", RECIPES.INGREDIENT_SUBGROUPS);
+>>>>>>> dd163c9 (restructure shared folder)
 =======
 export const ingredientSubgroupEnum = pgEnum("ingredient_subgroup", RECIPES.INGREDIENT_SUBGROUPS);
 >>>>>>> dd163c9 (restructure shared folder)
@@ -57,6 +69,7 @@ export const recipes = pgTable("recipes", {
   master_post_id: varchar("master_post_id").references(() => posts.id, { onDelete: "set null" }),
   title: varchar("title").notNull(),
   description: varchar("description").notNull(),
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   created_at: timestamp("created_at", { mode: "string" }).defaultNow(),
@@ -82,6 +95,11 @@ export const recipe_instruction_steps = pgTable(
   created_at: timestamp("created_at", { mode: "string" }).defaultNow(),
 });
 
+=======
+  created_at: timestamp("created_at", { mode: "string" }).defaultNow(),
+});
+
+>>>>>>> dd163c9 (restructure shared folder)
 export const recipe_instruction_steps = pgTable(
   "recipe_instruction_steps",
   {
@@ -92,6 +110,9 @@ export const recipe_instruction_steps = pgTable(
   (table) => [primaryKey({ columns: [table.recipeId, table.stepNumber] })]
 );
 
+<<<<<<< HEAD
+>>>>>>> dd163c9 (restructure shared folder)
+=======
 >>>>>>> dd163c9 (restructure shared folder)
 export const recipe_tags = pgTable(
   "recipe_tags",
@@ -156,9 +177,13 @@ export const relations_recipes = relations(recipes, ({ one, many }) => ({
   tagLinks: many(recipe_tags),
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   instructions: many(recipe_instruction_steps),
 =======
 >>>>>>> 76cb6eb (added posts & recipe db schema;)
+=======
+  instructions: many(recipe_instruction_steps),
+>>>>>>> dd163c9 (restructure shared folder)
 =======
   instructions: many(recipe_instruction_steps),
 >>>>>>> dd163c9 (restructure shared folder)
@@ -195,6 +220,9 @@ export const relations_ingredient_items = relations(ingredient_items, ({ one, ma
 }));
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> dd163c9 (restructure shared folder)
 =======
 >>>>>>> dd163c9 (restructure shared folder)
 
@@ -206,7 +234,10 @@ export const relations_recipe_instruction_steps = relations(
   })
 );
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 76cb6eb (added posts & recipe db schema;)
+=======
+>>>>>>> dd163c9 (restructure shared folder)
 =======
 >>>>>>> dd163c9 (restructure shared folder)
