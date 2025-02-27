@@ -8,6 +8,7 @@ import disp2 from "@assets/disp2.jpg";
 import disp3 from "@assets/disp3.jpg";
 import disp4 from "@assets/disp4.jpg";
 
+<<<<<<< HEAD
 //TODO: create a proper set of slideshow items
 const SLIDESHOW_ITEMS = [
   {
@@ -35,19 +36,28 @@ const SLIDESHOW_ITEMS = [
     alt: "disp4",
   },
 ];
+=======
+  return (
+    <>
+      <p className="text-green-800"> Authenticated! - '{user.username}' </p>
+      <Button disabled={isPending} onClick={() => mutate(undefined)}>
+        Logout
+      </Button>
+    </>
+  );
+}
+>>>>>>> 68ed90d (Created profile and edit profile pages; created reuseable profile page header; added mock post images; added routes for the pages.)
 
 <<<<<<< HEAD
 function LoginImageSlideShow({ className }: { className: ClassNameValue }) {
   return <Slideshow items={SLIDESHOW_ITEMS} header="FLAYVA" className={className} />;
 =======
 function TestUnauthenticated() {
-
-
   return (
     <>
-    <div className="w-screen h-screen flex items-center justify-center">
-      <LoginForm/>
-    </div>
+      <div className="w-screen h-screen flex items-center justify-center">
+        <LoginForm />
+      </div>
     </>
   );
 >>>>>>> 0562c4a (Fixed Login page)
@@ -59,6 +69,11 @@ export default function LoginPage() {
   // TODO: improve loading and error states
   if (isLoading) return "loading...";
   if (error) return `Error: ${error.message}`;
+<<<<<<< HEAD
+=======
+  if (data?.authenticated && data.user)
+    return <TestAuthenticated user={data.user} />;
+>>>>>>> 68ed90d (Created profile and edit profile pages; created reuseable profile page header; added mock post images; added routes for the pages.)
 
   return (
     <div className="w-screen h-screen flex items-center justify-center">
