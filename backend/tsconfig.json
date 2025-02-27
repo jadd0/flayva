@@ -17,15 +17,25 @@
       "@middleware/*": ["src/server/middleware/*"],
       "@auth/*": ["src/auth/*"],
 <<<<<<< HEAD
+<<<<<<< HEAD
       "@constants/*": ["src/constants/*"],
       "@flayva-monorepo/shared/*": ["../shared/src/*"]
 =======
+=======
+>>>>>>> 4b5fc47 (fix shared import for backend)
 <<<<<<< HEAD
       "@constants/*": ["src/constants/*"]
 =======
       "@flayva-monorepo/shared": ["../shared/src"]
 >>>>>>> 00faa13 (fix shared import for backend)
+<<<<<<< HEAD
 >>>>>>> b56575e (fix shared import for backend)
+=======
+=======
+      "@constants/*": ["src/constants/*"],
+      "@flayva-monorepo/shared/*": ["../shared/src/*"]
+>>>>>>> dd163c9 (restructure shared folder)
+>>>>>>> 4b5fc47 (fix shared import for backend)
       // "@config/*": ["./src/constants/config/*"]
     },
     "composite": true,
@@ -36,12 +46,18 @@
 
   "include": ["src/**/*"],
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4b5fc47 (fix shared import for backend)
   "exclude": [
     "../shared/dist", // Exclude the built output of the shared package
     "../shared/src", // Exclude the source files of the shared package
     "../shared/node_modules"
   ],
+<<<<<<< HEAD
 =======
 >>>>>>> b56575e (fix shared import for backend)
+=======
+>>>>>>> 4b5fc47 (fix shared import for backend)
   "references": [{ "path": "../shared" }]
 }
