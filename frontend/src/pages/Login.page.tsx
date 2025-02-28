@@ -1,7 +1,15 @@
 import { LoginForm } from "@/components/login-form";
 import Slideshow from "@/components/Slideshow";
+<<<<<<< HEAD
 import { useMe } from "@hooks/auth.hooks";
 import { ClassNameValue } from "tailwind-merge";
+=======
+import { Button } from "@/components/ui/button";
+import { useLogout, useMe } from "@/hooks/auth.hooks";
+import { useGlobalErrorToast } from "@/hooks/error.hooks";
+import { User } from "@flayva-monorepo/shared";
+import { toast } from "sonner";
+>>>>>>> 7cbbbe6 (Added slideshow to the login page)
 
 import disp1 from "@assets/disp1.jpg";
 import disp2 from "@assets/disp2.jpg";
@@ -55,9 +63,9 @@ function LoginImageSlideShow({ className }: { className: ClassNameValue }) {
 function TestUnauthenticated() {
   return (
     <>
-      <div className="w-screen h-screen flex items-center justify-center">
-        <LoginForm />
-      </div>
+    <div className="w-screen h-screen flex items-center justify-center">
+      <LoginForm/>
+    </div>
     </>
   );
 >>>>>>> 0562c4a (Fixed Login page)
