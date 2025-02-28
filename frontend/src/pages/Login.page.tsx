@@ -7,7 +7,6 @@ import { ClassNameValue } from "tailwind-merge";
 import { Button } from "@/components/ui/button";
 import { useLogout, useMe } from "@/hooks/auth.hooks";
 import { useGlobalErrorToast } from "@/hooks/error.hooks";
-import { User } from "@flayva-monorepo/shared";
 import { toast } from "sonner";
 >>>>>>> 7cbbbe6 (Added slideshow to the login page)
 
@@ -64,6 +63,7 @@ function TestUnauthenticated() {
   return (
     <>
     <div className="w-screen h-screen flex items-center justify-center">
+      <Slideshow className="w-full h-full"/>
       <LoginForm/>
     </div>
     </>
