@@ -1,6 +1,7 @@
 import { LoginForm } from "@/components/login-form";
 import Slideshow from "@/components/Slideshow";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { useMe } from "@hooks/auth.hooks";
 import { ClassNameValue } from "tailwind-merge";
 =======
@@ -13,6 +14,10 @@ import { toast } from "sonner";
 =======
 import { User } from "@flayva-monorepo/shared/types";
 >>>>>>> 04fc0dd (Fixed the login page resizing issues)
+=======
+import { useMe } from "@hooks/auth.hooks";
+import { ClassNameValue } from "tailwind-merge";
+>>>>>>> a45a58d (refactor login; slightly restyle login; remove amber background;)
 
 import disp1 from "@assets/disp1.jpg";
 import disp2 from "@assets/disp2.jpg";
@@ -20,6 +25,9 @@ import disp3 from "@assets/disp3.jpg";
 import disp4 from "@assets/disp4.jpg";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a45a58d (refactor login; slightly restyle login; remove amber background;)
 //TODO: create a proper set of slideshow items
 const SLIDESHOW_ITEMS = [
   {
@@ -47,6 +55,7 @@ const SLIDESHOW_ITEMS = [
     alt: "disp4",
   },
 ];
+<<<<<<< HEAD
 =======
   return (
     <>
@@ -73,6 +82,11 @@ function TestUnauthenticated() {
     </>
   );
 >>>>>>> 0562c4a (Fixed Login page)
+=======
+
+function LoginImageSlideShow({ className }: { className: ClassNameValue }) {
+  return <Slideshow items={SLIDESHOW_ITEMS} header="FLAYVA" className={className} />;
+>>>>>>> a45a58d (refactor login; slightly restyle login; remove amber background;)
 }
 
 export default function LoginPage() {
@@ -82,10 +96,13 @@ export default function LoginPage() {
   if (isLoading) return "loading...";
   if (error) return `Error: ${error.message}`;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   if (data?.authenticated && data.user)
     return <TestAuthenticated user={data.user} />;
 >>>>>>> 68ed90d (Created profile and edit profile pages; created reuseable profile page header; added mock post images; added routes for the pages.)
+=======
+>>>>>>> a45a58d (refactor login; slightly restyle login; remove amber background;)
 
   return (
     <div className="w-screen h-screen flex items-center justify-center">
