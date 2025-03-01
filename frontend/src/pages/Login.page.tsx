@@ -8,7 +8,11 @@ import { Button } from "@/components/ui/button";
 import { useLogout, useMe } from "@/hooks/auth.hooks";
 import { useGlobalErrorToast } from "@/hooks/error.hooks";
 import { toast } from "sonner";
+<<<<<<< HEAD
 >>>>>>> 7cbbbe6 (Added slideshow to the login page)
+=======
+import { User } from "@flayva-monorepo/shared/types";
+>>>>>>> 04fc0dd (Fixed the login page resizing issues)
 
 import disp1 from "@assets/disp1.jpg";
 import disp2 from "@assets/disp2.jpg";
@@ -63,8 +67,8 @@ function TestUnauthenticated() {
   return (
     <>
     <div className="w-screen h-screen flex items-center justify-center">
-      <Slideshow className="w-full h-full"/>
-      <LoginForm/>
+      <Slideshow className="sm:block hidden w-[50%] h-full"/>
+      <LoginForm className="flex sm:w-[50%] w-full h-full items-center justify-center"/>
     </div>
     </>
   );
