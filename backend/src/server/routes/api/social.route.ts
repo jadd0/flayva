@@ -8,4 +8,9 @@ const router: Router = Router();
  */
 router.get("/u/:userID", socialControllers.getUserById);
 
+/** 
+ * Get users by username
+ */
+router.get("/u/usernameSearch/:usernames", socialControllers.getUsersByUsername);
+
 export default router;

@@ -1,7 +1,7 @@
-import postRepo from "@/server/repositories/post.repo";
-import { uploadPostImages } from "@/server/services/images.services";
-import { createNewPostSchema } from "@flayva-monorepo/shared/validation/post.validation";
-import { z } from "zod";
+import postRepo from '@/server/repositories/post.repo';
+import { uploadPostImages } from '@/server/services/images.services';
+import { createNewPostSchema } from '@flayva-monorepo/shared/validation/post.validation';
+import { z } from 'zod';
 
 /**
  * Create a new post
@@ -10,26 +10,28 @@ import { z } from "zod";
  * @param newPostData - The data for the new post
  */
 export const createNewPost = async (
-  ownerId: string,
-  newPostData: z.infer<typeof createNewPostSchema>
+	ownerId: string,
+	newPostData: z.infer<typeof createNewPostSchema>
 ) => {
-  // TODO: handle upload image failures
-  const { successes: imageUploads } = await uploadPostImages(newPostData.images);
+	// TODO: handle upload image failures
+	const { successes: imageUploads } = await uploadPostImages(
+		newPostData.images
+	);
 
-  const { postId, recipeId } = await postRepo.saveNewPost(ownerId, {
-    imageUploads: imageUploads,
-    recipe: newPostData.recipe,
-  });
+	const { postId, recipeId } = await postRepo.saveNewPost(ownerId, {
+		imageUploads: imageUploads,
+		recipe: newPostData.recipe,
+	});
 
-  return { postId, recipeId };
+	return { postId, recipeId };
 };
 
 export const deletePost = async (postId: string) => {
-  const isDeleted = await postRepo.deleteExistingPost(postId);
+	const isDeleted = await postRepo.deleteExistingPost(postId);
 
-  return {
-    deleted: isDeleted,
-  };
+	return {
+		deleted: isDeleted,
+	};
 };
 
 /**
@@ -38,11 +40,11 @@ export const deletePost = async (postId: string) => {
  * @returns The post with the given ID
  */
 export const getPostById = async (postId: string) => {
-  //TODO: process db response
+	//TODO: process db response
 
-  const post = await postRepo.getPostById(postId);
+	const post = await postRepo.getPostById(postId);
 
-  return post;
+	return post;
 };
 
 /**
@@ -50,9 +52,9 @@ export const getPostById = async (postId: string) => {
  *
  */
 export const getFeed = async () => {
-  const posts = await postRepo.getRecentPosts(5);
+	const posts = await postRepo.getRecentPosts(5);
 
-  return posts;
+	return posts;
 };
 
 /**
@@ -60,22 +62,30 @@ export const getFeed = async () => {
  * @param recipeTitle - The title of a recipe in a search query
  * @param pageSize - The size of the results to be returned (for pagination)
  * @param pageNumber - The page number for the results to be returned (for pagination)
- * 
+ *
  */
-export const getRecipesByTitle = async (recipeTitle: string, pageSize: number, pageNumber: number) => {
-  const recipes = await postRepo.getRecipesByTitle(recipeTitle, pageSize, pageNumber);
+export const getRecipesByTitle = async (
+	recipeTitle: string,
+	pageSize: number,
+	pageNumber: number
+) => {
+	const recipes = await postRepo.getRecipesByTitle(
+		recipeTitle,
+		pageSize,
+		pageNumber
+	);
 
-  if (!recipes) {
-    return false;
-  }
+	if (!recipes) {
+		return false;
+	}
 
-  return recipes;
-}
+	return recipes;
+};
 
 export default {
-  createNewPost,
-  getPostById,
-  getFeed,
-  deletePost,
-  getRecipesByTitle,
+	createNewPost,
+	getPostById,
+	getFeed,
+	deletePost,
+	getRecipesByTitle,
 };

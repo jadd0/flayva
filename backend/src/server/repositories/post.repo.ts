@@ -268,7 +268,7 @@ export const getRecentPosts = async (limit: number) => {
  * @param recipeTitle - The title of a recipe in a search query
  * @param pageSize - The size of the results to be returned (for pagination)
  * @param pageNumber - The page number for the results to be returned (for pagination)
- * 
+ *
  */
 export const getRecipesByTitle = async (
 	recipeTitle: string,
@@ -329,5 +329,5 @@ export default {
 	getPostById,
 	getRecentPosts,
 	deleteExistingPost,
-  getRecipesByTitle
+	getRecipesByTitle,
 };
