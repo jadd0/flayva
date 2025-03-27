@@ -46,9 +46,29 @@ export const getFeed: RequestHandler = async (req: Request, res: Response) => {
   res.status(200).send(feed);
 };
 
+export const getRecipesByTitle = async (req: Request, res: Response) => {
+  const { recipeTitle, pageSize, pageNumber } = req.query;
+
+  if (!recipeTitle ||!pageSize ||!pageNumber) {
+    res.status(400).send({
+      message: "Missing required query parameters: recipeTitle, pageSize, and pageNumber",
+    });
+    return;
+  }
+
+  const recipes = await postServices.getRecipesByTitle(
+    recipeTitle.toString(),
+    parseInt(pageSize.toString()),
+    parseInt(pageNumber.toString())
+  );
+
+  res.status(200).send({ recipes });
+}
+
 export default {
   deletePost,
   createPost,
   getPostById,
   getFeed,
+  getRecipesByTitle,
 };

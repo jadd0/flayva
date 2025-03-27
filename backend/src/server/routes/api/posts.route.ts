@@ -43,4 +43,6 @@ router.get("/get/id/:id", postControllers.getPostById);
  */
 router.get("/get/feed", postControllers.getFeed);
 
+router.get('/search:recipeTitle', postControllers.getRecipesByTitle);
+
 export default router;

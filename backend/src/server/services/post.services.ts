@@ -55,9 +55,27 @@ export const getFeed = async () => {
   return posts;
 };
 
+/**
+ * Get a list of posts based on their title that are similar to the search query. Uses pagination
+ * @param recipeTitle - The title of a recipe in a search query
+ * @param pageSize - The size of the results to be returned (for pagination)
+ * @param pageNumber - The page number for the results to be returned (for pagination)
+ * 
+ */
+export const getRecipesByTitle = async (recipeTitle: string, pageSize: number, pageNumber: number) => {
+  const recipes = await postRepo.getRecipesByTitle(recipeTitle, pageSize, pageNumber);
+
+  if (!recipes) {
+    return false;
+  }
+
+  return recipes;
+}
+
 export default {
   createNewPost,
   getPostById,
   getFeed,
   deletePost,
+  getRecipesByTitle,
 };

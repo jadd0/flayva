@@ -1,18 +1,23 @@
-import { db } from "@/db";
+import { db } from '@/db';
 import {
-  post_images,
-  posts,
-  recipe_ingredients,
-  recipe_instruction_steps,
-  recipe_meta_infos,
-  recipe_tags,
-  recipes,
-} from "@/db/schema";
-import { createNewPostSchema } from "@flayva-monorepo/shared/validation/post.validation";
-import { z } from "zod";
-import { UploadedFileData } from "uploadthing/types";
-import { DbFindManyParams, DbQueryColumns, DbQueryWhere, DbQueryWith } from "@/types/db.types";
-import { eq } from "drizzle-orm";
+	post_images,
+	posts,
+	recipe_ingredients,
+	recipe_instruction_steps,
+	recipe_meta_infos,
+	recipe_tags,
+	recipes,
+} from '@/db/schema';
+import { createNewPostSchema } from '@flayva-monorepo/shared/validation/post.validation';
+import { z } from 'zod';
+import { UploadedFileData } from 'uploadthing/types';
+import {
+	DbFindManyParams,
+	DbQueryColumns,
+	DbQueryWhere,
+	DbQueryWith,
+} from '@/types/db.types';
+import { eq, sql, asc } from 'drizzle-orm';
 
 /**
  * MANAGING POSTS
@@ -25,91 +30,98 @@ import { eq } from "drizzle-orm";
  * @param imageUploads - The uploaded images for the post
  */
 export const saveNewPost = (
-  ownerId: string,
-  {
-    imageUploads,
-    recipe: recipeData,
-  }: { imageUploads: UploadedFileData[]; recipe: z.infer<typeof createNewPostSchema>["recipe"] }
+	ownerId: string,
+	{
+		imageUploads,
+		recipe: recipeData,
+	}: {
+		imageUploads: UploadedFileData[];
+		recipe: z.infer<typeof createNewPostSchema>['recipe'];
+	}
 ) =>
-  db.transaction(async (tx) => {
-    const [recipe] = await tx
-      .insert(recipes)
-      .values({
-        title: recipeData.title,
-        description: recipeData.description,
-      })
-      .returning();
+	db.transaction(async (tx) => {
+		const [recipe] = await tx
+			.insert(recipes)
+			.values({
+				title: recipeData.title,
+				description: recipeData.description,
+			})
+			.returning();
 
-    const [post] = await tx
-      .insert(posts)
-      .values({
-        ownerId: ownerId,
-        recipeId: recipe.id,
-      })
-      .returning();
+		const [post] = await tx
+			.insert(posts)
+			.values({
+				ownerId: ownerId,
+				recipeId: recipe.id,
+			})
+			.returning();
 
-    const insertIngredientsPromise =
-      recipeData.ingredients.length === 0
-        ? Promise.resolve()
-        : tx.insert(recipe_ingredients).values(
-            recipeData.ingredients.map((ingredient) => ({
-              recipe_id: recipe.id,
-              ingredient_id: ingredient.id,
-              amount_whole: ingredient.amount.whole,
-              amount_fractional_numerator: ingredient.amount.fractional?.numerator,
-              amount_fractional_denominator: ingredient.amount.fractional?.denominator,
-              unit: ingredient.unit,
-            }))
-          );
+		const insertIngredientsPromise =
+			recipeData.ingredients.length === 0
+				? Promise.resolve()
+				: tx.insert(recipe_ingredients).values(
+						recipeData.ingredients.map((ingredient) => ({
+							recipe_id: recipe.id,
+							ingredient_id: ingredient.id,
+							amount_whole: ingredient.amount.whole,
+							amount_fractional_numerator:
+								ingredient.amount.fractional?.numerator,
+							amount_fractional_denominator:
+								ingredient.amount.fractional?.denominator,
+							unit: ingredient.unit,
+						}))
+				  );
 
-    const insertTagsPromise =
-      recipeData.tags.length === 0
-        ? Promise.resolve()
-        : tx.insert(recipe_tags).values(
-            recipeData.tags.map((tag) => ({
-              recipeID: recipe.id,
-              tagID: tag.tagId,
-            }))
-          );
+		const insertTagsPromise =
+			recipeData.tags.length === 0
+				? Promise.resolve()
+				: tx.insert(recipe_tags).values(
+						recipeData.tags.map((tag) => ({
+							recipeID: recipe.id,
+							tagID: tag.tagId,
+						}))
+				  );
 
-    const insertInstructionsPromise =
-      recipeData.instructions.length === 0
-        ? Promise.resolve()
-        : tx.insert(recipe_instruction_steps).values(
-            recipeData.instructions.map((instruction, i) => ({
-              recipeId: recipe.id,
-              stepNumber: i,
-              instruction: instruction.instruction,
-            }))
-          );
+		const insertInstructionsPromise =
+			recipeData.instructions.length === 0
+				? Promise.resolve()
+				: tx.insert(recipe_instruction_steps).values(
+						recipeData.instructions.map((instruction, i) => ({
+							recipeId: recipe.id,
+							stepNumber: i,
+							instruction: instruction.instruction,
+						}))
+				  );
 
-    const insertMetaInfoPromise = tx.insert(recipe_meta_infos).values({
-      recipeId: recipe.id,
-      estimatedCookTime: recipeData.metaInfo?.cookTime?.toString(),
-      estimatedPrepTime: recipeData.metaInfo?.prepTime?.toString(),
-      servings: recipeData.metaInfo?.servings,
-    });
+		const insertMetaInfoPromise = tx.insert(recipe_meta_infos).values({
+			recipeId: recipe.id,
+			estimatedCookTime: recipeData.metaInfo?.cookTime?.toString(),
+			estimatedPrepTime: recipeData.metaInfo?.prepTime?.toString(),
+			servings: recipeData.metaInfo?.servings,
+		});
 
-    const insertImageReferencesPromise =
-      imageUploads.length === 0
-        ? Promise.resolve()
-        : tx
-            .insert(post_images)
-            .values(imageUploads.map((image) => ({ key: image.key, postID: post.id })));
+		const insertImageReferencesPromise =
+			imageUploads.length === 0
+				? Promise.resolve()
+				: tx
+						.insert(post_images)
+						.values(
+							imageUploads.map((image) => ({ key: image.key, postID: post.id }))
+						);
 
-    await Promise.all([
-      insertIngredientsPromise,
-      insertTagsPromise,
-      insertInstructionsPromise,
-      insertMetaInfoPromise,
-      insertImageReferencesPromise,
-    ]);
+		await Promise.all([
+			insertIngredientsPromise,
+			insertTagsPromise,
+			insertInstructionsPromise,
+			insertMetaInfoPromise,
+			insertImageReferencesPromise,
+		]);
 
-    return {
-      postId: post.id,
-      recipeId: recipe.id,
-    };
-  });
+		return {
+			postId: post.id,
+			recipeId: recipe.id,
+		};
+	});
 
 /**
  * delete an existing post from the database
@@ -117,11 +129,15 @@ export const saveNewPost = (
  * @returns true if the post was deleted, false if it was not found
  */
 export const deleteExistingPost = async (postId: string) => {
-  //TODO: currently recipes are not deleted when a post is deleted - revisit this when we decide if we are implementing forking or not
+	//TODO: currently recipes are not deleted when a post is deleted - revisit this when we decide if we are implementing forking or not
 
-  const [deleted] = await db.delete(posts).where(eq(posts.id, postId)).returning().execute();
+	const [deleted] = await db
+		.delete(posts)
+		.where(eq(posts.id, postId))
+		.returning()
+		.execute();
 
-  return !!deleted;
+	return !!deleted;
 };
 
 /**
@@ -133,77 +149,79 @@ export const deleteExistingPost = async (postId: string) => {
  *
  * @param options query options to dictate which posts to fetch
  */
-export const getPosts = (options: Omit<DbFindManyParams<"posts">, "with" | "columns">) =>
-  db.query.posts
-    .findMany({
-      columns: {
-        id: true,
-        recipeId: true,
-        created_at: true,
-      },
-      with: {
-        owner: {
-          columns: {
-            updatedAt: false,
-            createdAt: false,
-          },
-        },
-        images: {
-          columns: {
-            key: true,
-          },
-        },
-        recipe: {
-          with: {
-            tagLinks: {
-              with: {
-                tag: {
-                  columns: {
-                    category: true,
-                    group: true,
-                    id: true,
-                    name: true,
-                  },
-                },
-              },
-            },
-            instructions: {
-              columns: {
-                instruction: true,
-                stepNumber: true,
-              },
-            },
-            ingredients: {
-              columns: {
-                amount_fractional_denominator: true,
-                amount_fractional_numerator: true,
-                amount_whole: true,
-                unit: true,
-              },
-              with: {
-                ingredientItem: {
-                  columns: {
-                    group: true,
-                    id: true,
-                    name: true,
-                    subgroup: true,
-                  },
-                },
-              },
-            },
-            metaInfo: {
-              columns: {
-                estimatedCookTime: true,
-                estimatedPrepTime: true,
-                servings: true,
-              },
-            },
-          },
-        },
-      },
-      ...options,
-    })
-    .execute();
+export const getPosts = (
+	options: Omit<DbFindManyParams<'posts'>, 'with' | 'columns'>
+) =>
+	db.query.posts
+		.findMany({
+			columns: {
+				id: true,
+				recipeId: true,
+				created_at: true,
+			},
+			with: {
+				owner: {
+					columns: {
+						updatedAt: false,
+						createdAt: false,
+					},
+				},
+				images: {
+					columns: {
+						key: true,
+					},
+				},
+				recipe: {
+					with: {
+						tagLinks: {
+							with: {
+								tag: {
+									columns: {
+										category: true,
+										group: true,
+										id: true,
+										name: true,
+									},
+								},
+							},
+						},
+						instructions: {
+							columns: {
+								instruction: true,
+								stepNumber: true,
+							},
+						},
+						ingredients: {
+							columns: {
+								amount_fractional_denominator: true,
+								amount_fractional_numerator: true,
+								amount_whole: true,
+								unit: true,
+							},
+							with: {
+								ingredientItem: {
+									columns: {
+										group: true,
+										id: true,
+										name: true,
+										subgroup: true,
+									},
+								},
+							},
+						},
+						metaInfo: {
+							columns: {
+								estimatedCookTime: true,
+								estimatedPrepTime: true,
+								servings: true,
+							},
+						},
+					},
+				},
+			},
+			...options,
+		})
+		.execute();
 
 /**
  * Get a post by its ID
@@ -211,8 +229,8 @@ export const getPosts = (options: Omit<DbFindManyParams<"posts">, "with" | "colu
  * @param options - query options to dictate which posts to fetch
  */
 export const getPostsById = (
-  postId: string,
-  options: Omit<Parameters<typeof getPosts>[0], "where"> = {}
+	postId: string,
+	options: Omit<Parameters<typeof getPosts>[0], 'where'> = {}
 ) => getPosts({ ...options, where: (posts, { eq }) => eq(posts.id, postId) });
 
 /**
@@ -221,14 +239,14 @@ export const getPostsById = (
  * @param options - query options to dictate which posts to fetch
  */
 export const getPostById = async (
-  postId: string,
-  options: Omit<Parameters<typeof getPostsById>[1], "limit"> = {}
+	postId: string,
+	options: Omit<Parameters<typeof getPostsById>[1], 'limit'> = {}
 ) => {
-  const posts = await getPostsById(postId, { limit: 1, ...options });
+	const posts = await getPostsById(postId, { limit: 1, ...options });
 
-  if (posts.length === 0) return null;
+	if (posts.length === 0) return null;
 
-  return posts[0];
+	return posts[0];
 };
 
 /**
@@ -237,12 +255,69 @@ export const getPostById = async (
  *
  */
 export const getRecentPosts = async (limit: number) => {
-  const posts = await getPosts({
-    limit,
-    orderBy: (posts, { desc }) => desc(posts.created_at),
-  });
+	const posts = await getPosts({
+		limit,
+		orderBy: (posts, { desc }) => desc(posts.created_at),
+	});
 
-  return posts;
+	return posts;
+};
+
+/**
+ * Get a list of posts based on their title that are similar to the search query. Uses pagination
+ * @param recipeTitle - The title of a recipe in a search query
+ * @param pageSize - The size of the results to be returned (for pagination)
+ * @param pageNumber - The page number for the results to be returned (for pagination)
+ * 
+ */
+export const getRecipesByTitle = async (
+	recipeTitle: string,
+	pageSize: number,
+	pageNumber: number
+) => {
+	if (!recipeTitle) {
+		return false;
+	}
+
+	try {
+		const recipesList = await db
+			.select()
+			.from(recipes)
+			.where(sql`${recipes.title} ILIKE ${'%' + recipeTitle + '%'}`)
+			.orderBy(
+				sql`CASE
+      WHEN ${recipes.title} ILIKE ${recipeTitle.toLowerCase()} THEN 1 
+      WHEN ${recipes.title} ILIKE ${`${recipeTitle.toLowerCase()}%`} THEN 2
+      ELSE 3
+    END`,
+				asc(recipes.id)
+			)
+			.limit(pageSize)
+			.offset((pageNumber - 1) * pageSize);
+
+		const totalCount = await db
+			.select({ count: sql<number>`count(*)` })
+			.from(recipes)
+			.where(sql`${recipes.title} ILIKE ${'%' + recipeTitle + '%'}`)
+			.then((result) => result[0].count);
+
+		const totalPages = Math.ceil(totalCount / pageSize);
+
+		if (recipesList.length === 0) return false;
+
+		return {
+			exists: true,
+			recipes: recipesList,
+			pagination: {
+				currentPage: pageNumber,
+				totalPages: totalPages,
+				pageSize: pageSize,
+				totalCount: totalCount,
+			},
+		};
+	} catch (error) {
+		return false;
+	}
 };
 
 /**
@@ -250,8 +325,9 @@ export const getRecentPosts = async (limit: number) => {
  */
 
 export default {
-  saveNewPost,
-  getPostById,
-  getRecentPosts,
-  deleteExistingPost,
+	saveNewPost,
+	getPostById,
+	getRecentPosts,
+	deleteExistingPost,
+  getRecipesByTitle
 };
