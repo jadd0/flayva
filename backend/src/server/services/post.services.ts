@@ -57,6 +57,8 @@ export const getFeed = async () => {
 	return posts;
 };
 
+// TODO: Have a max page size and validate
+
 /**
  * Get a list of posts based on their title that are similar to the search query. Uses pagination
  * @param recipeTitle - The title of a recipe in a search query

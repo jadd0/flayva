@@ -31,3 +31,5 @@ export const useDeleteExistingPost = (postId: string) =>
  * @returns The post with the given Id
  */
 export const useGetPostById = (postId: string) => useQuery(queries.post.getPostById(postId));
+
+export const useGetPostByTitle = (title: string, pageSize: number, pageNumber: number) => useQuery(queries.post.getByTitle(title, pageSize, pageNumber));

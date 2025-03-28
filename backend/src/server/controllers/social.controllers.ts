@@ -1,6 +1,6 @@
 import socialServices from '@/server/services/social.services';
 import { RequestHandler, Request, Response } from 'express';
-import { RequestHandler } from 'express';
+
 
 export const getUserById: RequestHandler = async (req, res) => {
 	const { userId } = req.params;

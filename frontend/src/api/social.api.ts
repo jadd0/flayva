@@ -13,3 +13,13 @@ export async function fetchUserById(userID: string): Promise<{ user?: User }> {
 
   return { user: data.user as User };
 }
+
+export async function getUserByUsername(username: string, pageSize: number, pageNumber: number) {
+  const { data } = await request({
+    url: `/api/u/usernameSearch/${username}`,
+    method: "GET",
+    params: { username, pageSize, pageNumber },
+  });
+
+  return { posts: data } as { posts: User[] | null };
+}

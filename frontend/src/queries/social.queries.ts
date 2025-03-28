@@ -8,3 +8,4 @@ export const social = createQueryKeys("social", {
     queryKey: ["social", "userId", userId],
   }),
 });
+

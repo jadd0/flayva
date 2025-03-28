@@ -46,3 +46,20 @@ export async function getPostById(postId: string) {
 
   return { post: data } as { post: Post | null };
 }
+
+/** 
+ * 
+ * @param title 
+ * @param pageSize 
+ * @param pageNumber 
+ * @returns Post[] or null
+ */
+export async function getPostsByTitle(title: string, pageSize: number, pageNumber: number) {
+  const { data } = await request({
+    url: `/api/p/search/${title}`,
+    method: "GET",
+    params: { title, pageSize, pageNumber },
+  });
+
+  return { posts: data } as { posts: Post[] | null };
+}

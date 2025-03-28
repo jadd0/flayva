@@ -275,49 +275,52 @@ export const getRecipesByTitle = async (
 	pageSize: number,
 	pageNumber: number
 ) => {
-	if (!recipeTitle) {
-		return false;
-	}
 
-	try {
-		const recipesList = await db
-			.select()
-			.from(recipes)
-			.where(sql`${recipes.title} ILIKE ${'%' + recipeTitle + '%'}`)
-			.orderBy(
-				sql`CASE
+	// TODO: return null instead of false when nothing returned
+	// TODO: refeed into getbyid
+
+	const recipesList = await db
+		.select()
+		.from(recipes)
+		.where(sql`${recipes.title} ILIKE ${'%' + recipeTitle + '%'}`)
+		.orderBy(
+			sql`CASE
       WHEN ${recipes.title} ILIKE ${recipeTitle.toLowerCase()} THEN 1 
       WHEN ${recipes.title} ILIKE ${`${recipeTitle.toLowerCase()}%`} THEN 2
       ELSE 3
     END`,
-				asc(recipes.id)
-			)
-			.limit(pageSize)
-			.offset((pageNumber - 1) * pageSize);
+			asc(recipes.id)
+		)
+		.limit(pageSize)
+		.offset((pageNumber - 1) * pageSize);
 
-		const totalCount = await db
-			.select({ count: sql<number>`count(*)` })
-			.from(recipes)
-			.where(sql`${recipes.title} ILIKE ${'%' + recipeTitle + '%'}`)
-			.then((result) => result[0].count);
+	if (recipesList.length === 0) return null;
+  const newRecipesList = [];
+  
+  for (let i = 0; i < recipesList.length; i++) {
+    newRecipesList[i] = await getPostById(recipesList[i].id);
+  }
 
-		const totalPages = Math.ceil(totalCount / pageSize);
+	const totalCount = await db
+		.select({ count: sql<number>`count(*)` })
+		.from(recipes)
+		.where(sql`${recipes.title} ILIKE ${'%' + recipeTitle + '%'}`)
+		.then((result) => result[0].count);
 
-		if (recipesList.length === 0) return false;
+	const totalPages = Math.ceil(totalCount / pageSize);
 
-		return {
-			exists: true,
-			recipes: recipesList,
-			pagination: {
-				currentPage: pageNumber,
-				totalPages: totalPages,
-				pageSize: pageSize,
-				totalCount: totalCount,
-			},
-		};
-	} catch (error) {
-		return false;
-	}
+
+
+	return {
+		exists: true,
+		recipes: newRecipesList,
+		pagination: {
+			currentPage: pageNumber,
+			totalPages: totalPages,
+			pageSize: pageSize,
+			totalCount: totalCount,
+		},
+	};
 };
 
 /**

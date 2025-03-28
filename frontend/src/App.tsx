@@ -13,7 +13,10 @@ import CreatePostPage from "./pages/Create-post.page";
 import RecipePage from "./pages/Recipe.page";
 import EditProfile from "./pages/profile-pages/Edit-profile.page";
 import ProfilePage from "./pages/profile-pages/Profile.page";
+import SearchPage from './pages/Search.page'
 import DevPage from "./pages/Dev.page";
+
+
 import { Toaster } from "sonner";
 
 
@@ -70,6 +73,9 @@ function App() {
             <Route path="/feed" element={<FeedPage />} />
             <Route path="/profile/edit" element={<EditProfile />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/search" element={<SearchPage />} />
+
+
           </Route>
           <Route element={<UnauthenticatedRouter />}>
             <Route path="/login" element={<LoginPage />} />

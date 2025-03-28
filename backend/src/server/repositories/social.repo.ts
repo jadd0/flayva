@@ -29,45 +29,49 @@ export const getUsersByUsername = async (
 		return false;
 	}
 
-	try {
-		const usersList = await db
-			.select()
-			.from(users)
-			.where(sql`${users.username} ILIKE ${'%' + username + '%'}`)
-			.orderBy(
-				sql`CASE
+	const usersList = await db
+		.select()
+		.from(users)
+		.where(sql`${users.username} ILIKE ${'%' + username + '%'}`)
+		.orderBy(
+			sql`CASE
       WHEN ${users.username} ILIKE ${username.toLowerCase()} THEN 1 
       WHEN ${users.username} ILIKE ${`${username.toLowerCase()}%`} THEN 2
       ELSE 3
     END`,
-				asc(users.id)
-			)
-			.limit(pageSize)
-			.offset((pageNumber - 1) * pageSize);
+			asc(users.id)
+		)
+		.limit(pageSize)
+		.offset((pageNumber - 1) * pageSize);
 
-		const totalCount = await db
-			.select({ count: sql<number>`count(*)` })
-			.from(users)
-			.where(sql`${users.username} ILIKE ${'%' + username + '%'}`)
-			.then((result) => result[0].count);
+    if (usersList.length === 0) return null;
+  const newUsersList = [];
+  
+  for (let i = 0; i < usersList.length; i++) {
+    newUsersList[i] = await getUserById(usersList[i].id);
+  }
 
-		const totalPages = Math.ceil(totalCount / pageSize);
 
-		if (usersList.length === 0) return false;
+	const totalCount = await db
+		.select({ count: sql<number>`count(*)` })
+		.from(users)
+		.where(sql`${users.username} ILIKE ${'%' + username + '%'}`)
+		.then((result) => result[0].count);
 
-		return {
-			exists: true,
-			users: usersList,
-			pagination: {
-				currentPage: pageNumber,
-				totalPages: totalPages,
-				pageSize: pageSize,
-				totalCount: totalCount,
-			},
-		};
-	} catch (error) {
-		return false;
-	}
+	const totalPages = Math.ceil(totalCount / pageSize);
+
+  
+
+	return {
+		exists: true,
+		users: newUsersList,
+		pagination: {
+			currentPage: pageNumber,
+			totalPages: totalPages,
+			pageSize: pageSize,
+			totalCount: totalCount,
+		},
+	};
 };
 
 export default {
