@@ -1,5 +1,6 @@
-import recipeRepo from "@/server/repositories/recipe.repo";
-import { RecipeTag } from "@flayva-monorepo/shared/types";
+import recipeRepo from '@/server/repositories/recipe.repo';
+import postRepo from '../repositories/post.repo';
+import { RecipeTag } from '@flayva-monorepo/shared/types';
 
 /**
  * Search for tags that are similar to the search term
@@ -7,18 +8,22 @@ import { RecipeTag } from "@flayva-monorepo/shared/types";
  * @returns a list of tags that are similar to the search term
  */
 export const searchSimilarValidRecipeTag = async (searchTerm: string) => {
-  const results = await recipeRepo.querySimilarValidTagOptions(searchTerm);
+	const results = await recipeRepo.querySimilarValidTagOptions(searchTerm);
 
-  const formattedTags: RecipeTag[] = results.map((tag) => ({
-    tagId: tag.id,
-    tagName: tag.name,
-    category: tag.category,
-    group: tag.group,
-  }));
+	const formattedTags: RecipeTag[] = results.map((tag) => ({
+		tagId: tag.id,
+		tagName: tag.name,
+		category: tag.category,
+		group: tag.group,
+	}));
 
-  return formattedTags;
+	return formattedTags;
 };
 
+// TODO: Have a max page size and validate
+
+
+
 export default {
-  searchSimilarValidRecipeTag,
+	searchSimilarValidRecipeTag,
 };

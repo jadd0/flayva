@@ -263,65 +263,18 @@ export const getRecentPosts = async (limit: number) => {
 	return posts;
 };
 
+
 /**
- * Get a list of posts based on their title that are similar to the search query. Uses pagination
- * @param recipeTitle - The title of a recipe in a search query
- * @param pageSize - The size of the results to be returned (for pagination)
- * @param pageNumber - The page number for the results to be returned (for pagination)
- *
+ * Gets posts based on a recipe id
+ * @param recipeId - The id of the recipe
+ * @param options - Query options to dictate which posts to fetch
+ * @returns 
  */
-export const getRecipesByTitle = async (
-	recipeTitle: string,
-	pageSize: number,
-	pageNumber: number
-) => {
+export const getPostsByRecipeId = (
+	recipeId: string,
+	options: Omit<Parameters<typeof getPosts>[0], 'where'> = {}
+) => getPosts({ ...options, where: (posts, { eq }) => eq(posts.recipeId, recipeId) });
 
-	// TODO: return null instead of false when nothing returned
-	// TODO: refeed into getbyid
-
-	const recipesList = await db
-		.select()
-		.from(recipes)
-		.where(sql`${recipes.title} ILIKE ${'%' + recipeTitle + '%'}`)
-		.orderBy(
-			sql`CASE
-      WHEN ${recipes.title} ILIKE ${recipeTitle.toLowerCase()} THEN 1 
-      WHEN ${recipes.title} ILIKE ${`${recipeTitle.toLowerCase()}%`} THEN 2
-      ELSE 3
-    END`,
-			asc(recipes.id)
-		)
-		.limit(pageSize)
-		.offset((pageNumber - 1) * pageSize);
-
-	if (recipesList.length === 0) return null;
-  const newRecipesList = [];
-  
-  for (let i = 0; i < recipesList.length; i++) {
-    newRecipesList[i] = await getPostById(recipesList[i].id);
-  }
-
-	const totalCount = await db
-		.select({ count: sql<number>`count(*)` })
-		.from(recipes)
-		.where(sql`${recipes.title} ILIKE ${'%' + recipeTitle + '%'}`)
-		.then((result) => result[0].count);
-
-	const totalPages = Math.ceil(totalCount / pageSize);
-
-
-
-	return {
-		exists: true,
-		recipes: newRecipesList,
-		pagination: {
-			currentPage: pageNumber,
-			totalPages: totalPages,
-			pageSize: pageSize,
-			totalCount: totalCount,
-		},
-	};
-};
 
 /**
  * Default export including all functions from this file
@@ -332,5 +285,5 @@ export default {
 	getPostById,
 	getRecentPosts,
 	deleteExistingPost,
-	getRecipesByTitle,
+	getPostsByRecipeId
 };

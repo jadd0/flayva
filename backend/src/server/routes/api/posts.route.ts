@@ -7,6 +7,7 @@ import { ensureAuthenticated } from "@/server/middleware/auth.middleware";
 import postControllers from "@/server/controllers/post.controllers";
 import { validateRequestBody } from "zod-express-middleware";
 import { isRequestPostOwner } from "@/server/middleware/post.middleware";
+
 const router: Router = Router();
 
 /**
@@ -43,10 +44,9 @@ router.get("/get/id/:id", postControllers.getPostById);
  */
 router.get("/get/feed", postControllers.getFeed);
 
-
 /**
- * Get recipes under a certain title 
+ * Get posts by a recipe title
  */
-router.get('/search/:recipeTitle', postControllers.getRecipesByTitle);
+router.get('/get/title/:title', postControllers.getPostsByTitle);
 
 export default router;

@@ -1,4 +1,5 @@
 import postRepo from '@/server/repositories/post.repo';
+import recipeRepo from '@/server/repositories/recipe.repo';
 import { uploadPostImages } from '@/server/services/images.services';
 import { createNewPostSchema } from '@flayva-monorepo/shared/validation/post.validation';
 import { z } from 'zod';
@@ -57,8 +58,6 @@ export const getFeed = async () => {
 	return posts;
 };
 
-// TODO: Have a max page size and validate
-
 /**
  * Get a list of posts based on their title that are similar to the search query. Uses pagination
  * @param recipeTitle - The title of a recipe in a search query
@@ -66,12 +65,12 @@ export const getFeed = async () => {
  * @param pageNumber - The page number for the results to be returned (for pagination)
  *
  */
-export const getRecipesByTitle = async (
+export const getPostsByTitle = async (
 	recipeTitle: string,
 	pageSize: number,
 	pageNumber: number
 ) => {
-	const recipes = await postRepo.getRecipesByTitle(
+	const recipes = await recipeRepo.getRecipesByTitle(
 		recipeTitle,
 		pageSize,
 		pageNumber
@@ -81,13 +80,27 @@ export const getRecipesByTitle = async (
 		return false;
 	}
 
-	return recipes;
+	if (recipes == null) {
+		return null;
+	}
+
+  const posts = [];
+
+  for (let i = 0; i < recipes.recipes.length; i++) {
+    posts[i] = postRepo.getPostsByRecipeId(recipes.recipes[i].id);
+  }
+
+	return {
+    posts,
+    pagination: recipes.pagination
+  };
 };
+
 
 export default {
 	createNewPost,
 	getPostById,
 	getFeed,
 	deletePost,
-	getRecipesByTitle,
+	getPostsByTitle
 };

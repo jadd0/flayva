@@ -46,7 +46,7 @@ export const getFeed: RequestHandler = async (req: Request, res: Response) => {
   res.status(200).send(feed);
 };
 
-export const getRecipesByTitle = async (req: Request, res: Response) => {
+export const getPostsByTitle = async (req: Request, res: Response) => {
   const { recipeTitle, pageSize, pageNumber } = req.query;
 
   if (!recipeTitle ||!pageSize ||!pageNumber) {
@@ -56,7 +56,7 @@ export const getRecipesByTitle = async (req: Request, res: Response) => {
     return;
   }
 
-  const recipes = await postServices.getRecipesByTitle(
+  const recipes = await postServices.getPostsByTitle(
     recipeTitle.toString(),
     parseInt(pageSize.toString()),
     parseInt(pageNumber.toString())
@@ -70,5 +70,5 @@ export default {
   createPost,
   getPostById,
   getFeed,
-  getRecipesByTitle,
+  getPostsByTitle,
 };
